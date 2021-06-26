@@ -1,0 +1,13 @@
+{% extends 'portfolio/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container text-center bg-primary text-white" style="width: 25%; margin-top: 10%; padding: 20px 0 20px 0;">
+        <h2>Edit Investment</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p style="margin-top: 12px;"><input type="submit" value="Update" class="btn btn-lg bg-light"></p>
+        </form>
+    </div>
+{% endblock %}

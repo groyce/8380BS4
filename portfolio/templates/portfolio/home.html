@@ -1,0 +1,62 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="jumbotron container text-center">
+            <h1 class="display-4">Hello, {{ user.username }}!</h1>
+        </div>
+        <div class="container">
+            <div class="card-deck">
+                <div class="card text-center">
+                  <div class="card-header">Customer List</div>
+                  <div class="card-body">
+                    <p class="card-text"><span class="material-icons" style="font-size: 200px;">
+                        supervised_user_circle
+                        </span></p>
+                  </div>
+                  <div class="card-footer"><a class="btn btn-primary text-white" href="{% url 'customer_list' %}">Customers</a></div>
+                </div>
+                <div class="card text-center">
+                  <div class="card-header">Passive Income List</div>
+                  <div class="card-body">
+                    <p class="card-text"><span class="material-icons" style="font-size: 200px;">
+                      home
+                        </span></p>
+                  </div>
+                  <div class="card-footer"><a class="btn btn-primary text-white" href="{% url 'passive_list' %}">Passive Income</a></div>
+                </div>
+                <div class="card text-center">
+                    <div class="card-header">Investment List</div>
+                    <div class="card-body">
+                      <p class="card-text"><span class="material-icons" style="font-size: 200px;">
+                        monetization_on
+                          </span></p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary text-white" href="{% url 'investment_list' %}">Investments</a></div>
+                  </div>
+                  <div class="card text-center">
+                    <div class="card-header">Stock List</div>
+                    <div class="card-body">
+                      <p class="card-text"><span class="material-icons" style="font-size: 200px;">
+                          trending_up
+                          </span></p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary text-white" href="{% url 'stock_list' %}">Stocks</a></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    {% else %}
+        <div class="jumbotron jumbotron-fluid text-center">
+            <h1 class="display-4">Welcome!</h1>
+            <h4>Eagle Financial Services</h4>
+            <p class="lead">To get started please sign in or sign up!</p>
+            <hr class="my-4">
+            <div class="row justify-content-center">
+              <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button" style="margin-right: 1%;">Login</a>           
+              <a class="btn btn-info btn-lg" href="{% url 'signup' %}" role="button">Signup</a>            
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Eagle Financial Services</title>
+
+    <style>
+      .active{
+        background-color: white;
+        color: blue;
+        border: 1px solid black;
+        box-shadow: 1px 2px grey;
+      }
+    </style>
+  </head>
+
+  <nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container">
+      <div class="mx-auto">
+        <a class="navbar-brand text-white text-uppercase font-weight-bold " href="{% url 'home' %}">Eagle Financial Services</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.resolver_match.view_name == 'home'  %}active{% endif %} ">
+            <a class="nav-link {% if request.resolver_match.view_name == 'home' %}active{% else %}text-white{% endif %}" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.view_name == 'customer_list' or request.resolver_match.view_name == 'portfolio' or request.resolver_match.view_name == 'customer_delete' or request.resolver_match.view_name == 'customer_update' or request.resolver_match.view_name == 'add_customer' %}active{% endif %}">
+            <a class="nav-link {% if request.resolver_match.view_name == 'customer_list' or request.resolver_match.view_name == 'portfolio' or request.resolver_match.view_name == 'customer_delete' or request.resolver_match.view_name == 'customer_update' or request.resolver_match.view_name == 'add_customer'%}active{% else %}text-white{% endif %}" href="{% url 'customer_list' %}">Customers</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.view_name == 'passive_list' or request.resolver_match.view_name == 'add_passive' or request.resolver_match.view_name == 'delete_passive' or request.resolver_match.view_name == 'edit_passive' %}active{% endif %}">
+            <a class="nav-link {% if request.resolver_match.view_name == 'passive_list' or request.resolver_match.view_name == 'add_passive' or request.resolver_match.view_name == 'delete_passive' or request.resolver_match.view_name == 'edit_passive'%}active{% else %}text-white{% endif %}" href="{% url 'passive_list' %}">Passive Income</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.view_name == 'investment_list' or request.resolver_match.view_name == 'add_investment' or request.resolver_match.view_name == 'delete_investment' or request.resolver_match.view_name == 'edit_investment' %}active{% endif %}">
+            <a class="nav-link {% if request.resolver_match.view_name == 'investment_list' or request.resolver_match.view_name == 'add_investment' or request.resolver_match.view_name == 'delete_investment' or request.resolver_match.view_name == 'edit_investment'%}active{% else %}text-white{% endif %}" href="{% url 'investment_list' %}">Investments</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.view_name == 'stock_list' or request.resolver_match.view_name == 'add_stock' or request.resolver_match.view_name == 'delete_stock' or request.resolver_match.view_name == 'edit_stock' %}active{% endif %}">
+            <a class="nav-link {% if request.resolver_match.view_name == 'stock_list' or request.resolver_match.view_name == 'add_stock' or request.resolver_match.view_name == 'delete_stock' or request.resolver_match.view_name == 'edit_stock'%}active{% else %}text-white{% endif %}" href="{% url 'stock_list' %}">Stocks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+          {% else %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.resolver_match.view_name == 'login' or request.resolver_match.view_name == 'home' %}active{% endif %}">
+            <a class="nav-link {% if request.resolver_match.view_name == 'login' or request.resolver_match.view_name == 'home'%}active{% else %}text-white{% endif %}" href="{% url 'login' %}">Login</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <body>
+    {% block content %}
+    {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container-fluid table-responsive-lg col-9">
+    <div class="jumbotron"  style="margin-top: 70px;">
+        <h1 class="display-4 text-center text-black">Investment List</h1>
+    </div>
+    <div class="row">
+        <a class="btn btn-success text-white ml-auto" style="margin-right: 50px;" href="{% url 'add_investment' %}">Add Investment</a>
+    </div>
+    <table class="table table-hover table-striped text-center" style="margin-top: 20px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Customer Number</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Acquired Value</th>
+                <th>Acquired Date</th>
+                <th>Recent Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for investment in object_list %}
+            <tr>
+                <td>{{ investment.customer }}</td>
+                <td class="text-uppercase">{{ investment.category }}</td>
+                <td>{{ investment.description }}</td>
+                <td>${{ investment.acquired_value }}</td>
+                <td>{{ investment.acquired_date }}</td>
+                <td>${{ investment.recent_value }}</td>
+                <td><a href="{% url 'edit_investment' pk=investment.pk%}" class="btn btn-warning"><span class="material-icons">
+                    create
+                    </span></a>
+                    <a href="{% url 'delete_investment' pk=investment.pk %}" class="btn btn-danger"><span class="material-icons">
+                        delete
+                        </span></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

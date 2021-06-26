@@ -1,0 +1,5 @@
+myvenv/
+.venv/
+*.sqlite3
+*.pyc
+staticfiles/

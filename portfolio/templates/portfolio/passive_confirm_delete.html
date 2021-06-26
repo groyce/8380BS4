@@ -1,0 +1,12 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container text-center bg-primary text-white" style="width: 25%; margin-top: 10%; padding: 20px 0 20px 0;">
+    <h2>Delete</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ passive.description }}"?</p>
+        <p style="margin-top: 12px;"><input type="submit" value="Confirm" class="btn btn-lg bg-light"></p>
+    </form>
+</div>
+{% endblock %}
